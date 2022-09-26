@@ -4,13 +4,13 @@ package com.diego.Sistema.gerenciamento.de.frota.model.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotBlank;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "TB_FUNCIONARIOS")
 public class FuncionarioModel {
-
 
     @Id
     private UUID uuid;
@@ -27,14 +27,14 @@ public class FuncionarioModel {
     @Column(unique = true)
     private String cnh;
 
+    @Column( nullable = false, unique = true)
+    private String pis;
+
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String senha;
-
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
-    private LocalDateTime dtNascimento;
 
 
     public UUID getUuid() {
@@ -93,11 +93,11 @@ public class FuncionarioModel {
         this.senha = senha;
     }
 
-    public LocalDateTime getDtNascimento() {
-        return dtNascimento;
+    public String getPis() {
+        return pis;
     }
 
-    public void setDtNascimento(LocalDateTime dtNascimento) {
-        this.dtNascimento = dtNascimento;
+    public void setPis(String pis) {
+        this.pis = pis;
     }
 }

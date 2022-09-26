@@ -8,4 +8,13 @@ import java.util.UUID;
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository<FuncionarioModel, UUID> {
+
+    boolean existsByCpf(String cpf);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByPis(String pis);
+
+    boolean existsByCnh(String cnh);
+
 }

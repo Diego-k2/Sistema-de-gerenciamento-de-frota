@@ -3,7 +3,6 @@ package com.diego.Sistema.gerenciamento.de.frota.model.dtos;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 
 public class FuncionarioDto {
 
@@ -20,13 +19,14 @@ public class FuncionarioDto {
     private String cnh;
 
     @NotBlank
+    private String pis;
+
+    @NotBlank
     private String email;
 
     @NotBlank
     private String senha;
 
-    @NotBlank
-    private LocalDateTime dtNascimento;
 
     public String getNome() {
         return nome;
@@ -76,25 +76,24 @@ public class FuncionarioDto {
         this.senha = senha;
     }
 
-    public LocalDateTime getDtNascimento() {
-        return dtNascimento;
+    public String getPis() {
+        return pis;
     }
 
-    public void setDtNascimento(LocalDateTime dtNascimento) {
-        this.dtNascimento = dtNascimento;
+    public void setPis(String pis) {
+        this.pis = pis;
     }
-
 
     public FuncionarioModel toFuncionarioModel(){
         FuncionarioModel funcionarioModel = new FuncionarioModel();
 
         funcionarioModel.setNome(this.nome);
         funcionarioModel.setSobrenome(this.sobrenome);
-        funcionarioModel.setCpf(this.cpf);
-        funcionarioModel.setCnh(this.cnh);
+        funcionarioModel.setCpf(this.cpf.replace("[^0-9a-zA-Z]+", ""));
+        funcionarioModel.setCnh(this.cnh.replace("[^0-9a-zA-Z]+",""));
         funcionarioModel.setEmail(this.email);
         funcionarioModel.setSenha(this.senha);
-        funcionarioModel.setDtNascimento(this.dtNascimento);
+        funcionarioModel.setPis(this.pis);
 
         return funcionarioModel;
     }

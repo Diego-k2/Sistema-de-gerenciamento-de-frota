@@ -15,7 +15,32 @@ public class FuncionarioService {
     }
 
     @Transactional
-    public FuncionarioModel save(FuncionarioModel funcionarioModel){
-        return funcionarioRepository.save(funcionarioModel);
+    public void save(FuncionarioModel funcionarioModel){
+         funcionarioRepository.save(funcionarioModel);
     }
+
+    @Transactional
+    public boolean existsByCpf(String cpf){
+        return funcionarioRepository.existsByCpf(cpf);
+    }
+
+    @Transactional
+    public boolean existsByEmail(String email){
+        return funcionarioRepository.existsByEmail(email);
+    }
+
+    @Transactional
+    public boolean existsByPis(String pis){
+        return funcionarioRepository.existsByPis(pis);
+    }
+
+    @Transactional
+    public boolean existsByCnh(String cnh){
+        return funcionarioRepository.existsByCnh(cnh);
+    }
+
+
+
+
+
 }
