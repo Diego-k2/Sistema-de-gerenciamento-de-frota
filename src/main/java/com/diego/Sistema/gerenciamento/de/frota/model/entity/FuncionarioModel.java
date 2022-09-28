@@ -1,11 +1,6 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.entity;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity

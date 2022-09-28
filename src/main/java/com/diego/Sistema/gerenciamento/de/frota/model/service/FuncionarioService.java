@@ -5,6 +5,10 @@ import com.diego.Sistema.gerenciamento.de.frota.model.repository.FuncionarioRepo
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class FuncionarioService {
 
@@ -17,6 +21,11 @@ public class FuncionarioService {
     @Transactional
     public void save(FuncionarioModel funcionarioModel){
          funcionarioRepository.save(funcionarioModel);
+    }
+
+    @Transactional
+    public List<FuncionarioModel> findAll(){
+        return funcionarioRepository.findAll();
     }
 
     @Transactional
@@ -39,7 +48,10 @@ public class FuncionarioService {
         return funcionarioRepository.existsByCnh(cnh);
     }
 
-
+    @Transactional
+    public Optional<FuncionarioModel> findById(String id){
+        return funcionarioRepository.findById(UUID.fromString(id));
+    }
 
 
 

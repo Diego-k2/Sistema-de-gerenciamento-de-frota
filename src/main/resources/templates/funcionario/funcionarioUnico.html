@@ -19,12 +19,12 @@
             <h1>Novo Funcionario</h1>
           </div>
           <div class="card-body">
-            <form th:object="${funcionarioDto}" action="/funcionario/salvarFuncionario" method="post" class="form-control">
+            <form th:each="funcionario : ${funcionario}" action="#" method="get" class="form-control">
                   <div class="row">
                     <div class="col-6">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="nome">
-                        <label for="floatingInput">Nome</label>
+                        <label for="floatingInput" th:value="${funcionario.nome}" readonly>Nome</label>
                       </div>
                     </div>
                     <div class="col-6">
