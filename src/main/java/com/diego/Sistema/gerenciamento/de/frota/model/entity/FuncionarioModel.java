@@ -13,6 +13,7 @@ import java.util.UUID;
 public class FuncionarioModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID uuid;
 
     @Column(nullable = false)
