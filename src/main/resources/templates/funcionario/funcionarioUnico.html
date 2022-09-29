@@ -1,75 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Funcionario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-</head>    
+<head th:replace="~{fragmentos :: head}"></head> 
     
 <body>
 
+  <div th:replace="~{fragmentos :: header}"></div>
+
     <div class="container">
       <div class="d-flex justify-content-center mt-3">
-        <div class="card" style="width: 50rem;">
-          <span th:text="${erro}" th:classappend="${temerro} ? 'alert alert-warning' :  ''"></span>
-          <div class="card-header">
-            <h1>Novo Funcionario</h1>
+        <div th:each="funcionario : ${funcionario}" class="card border-color mb-5" style="width: 50rem;">
+          <div class="card-header border-color">
+            <h1>Funcionario</h1>
           </div>
           <div class="card-body">
-            <form th:each="funcionario : ${funcionario}" action="#" method="get" class="form-control">
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="nome">
-                        <label for="floatingInput" th:value="${funcionario.nome}" readonly>Nome</label>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingPassword" placeholder="Password"  name="sobrenome">
-                        <label for="floatingPassword">Sobrenome</label>
-                      </div>
-                    </div>
+            <form action="/funcionario/salvarFuncionario" method="post">
+              <div class="justify-content-between">
+                <div class="form-row">
+                  <div class="col">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="nome" th:value="${funcionario.nome}" readonly>
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"  name="cpf">
-                        <label for="floatingInput">CPF</label>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingPassword" placeholder="Password"  name="cnh">
-                        <label for="floatingPassword">CNH</label>
-                      </div>
-                    </div>
+                  <div class="col">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" th:value="${funcionario.sobrenome}" readonly>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingPassword" placeholder="Password"  name="pis">
-                    <label for="floatingPassword">PIS</label>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <label for="nome">CPF</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf" th:value="${funcionario.cpf}" readonly>
                   </div>
-                    <div>
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-                        <label for="floatingInput">E-mail</label>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="senha">
-                        <label for="floatingPassword">Senha</label>
-                      </div>
-                    </div>
+                  <div class="col">
+                    <label for="sobrenome">CNH</label>
+                    <input type="text" class="form-control" name="cnh" id="cnh" th:value="${funcionario.cnh}" readonly>
                   </div>
-                  <div class="d-flex justify-content-center">
-                    <input type="submit" value="Cadastrar" class="btn btn-success" style="width: 300px;">
-                  </div>
-
-
+                </div>
+                <div class="form-group">
+                  <label for="pis">PIS</label>
+                  <input type="text" class="form-control" name="pis" id="pis" th:value="${funcionario.pis}" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" name="email" id="exampleInputEmail1" th:value="${funcionario.email}" readonly>
+                </div>
               </div>
             </form>
           </div>
@@ -78,5 +51,8 @@
 
     </div>
 
+</body>
+</html>
+    </div>
 </body>
 </html>

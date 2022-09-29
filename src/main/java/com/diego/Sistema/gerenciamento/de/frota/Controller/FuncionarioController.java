@@ -49,7 +49,7 @@ public class FuncionarioController {
 
             funcionarioService.save(funcionarioModel);
 
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @GetMapping("/todos")
