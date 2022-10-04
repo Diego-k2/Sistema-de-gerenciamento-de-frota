@@ -31,13 +31,12 @@ public class FuncionarioController {
 
     @GetMapping("/novo")
     public String formNovoFuncionario() {
+
         return "forms/formNovoFuncionario";
     }
 
     @PostMapping("/salvarFuncionario")
     public String salvarFuncuinario(@Valid FuncionarioDto funcionarioDto, BindingResult bindingResult, Model model){
-
-
 
         if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDados(funcionarioDto)){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");

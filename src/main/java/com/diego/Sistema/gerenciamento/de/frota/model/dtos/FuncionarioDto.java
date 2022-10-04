@@ -3,6 +3,7 @@ package com.diego.Sistema.gerenciamento.de.frota.model.dtos;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 public class FuncionarioDto {
 
@@ -26,7 +27,6 @@ public class FuncionarioDto {
 
     @NotBlank
     private String senha;
-
 
     public String getNome() {
         return nome;
@@ -83,6 +83,7 @@ public class FuncionarioDto {
     public void setPis(String pis) {
         this.pis = pis;
     }
+
 
     public FuncionarioModel toFuncionarioModel(){
         FuncionarioModel funcionarioModel = new FuncionarioModel();
