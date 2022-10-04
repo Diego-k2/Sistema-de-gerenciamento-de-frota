@@ -3,7 +3,6 @@ package com.diego.Sistema.gerenciamento.de.frota.model.dtos;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
 
 public class FuncionarioDto {
 

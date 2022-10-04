@@ -25,12 +25,15 @@ public class VeiculoModel {
     @Column(nullable = false)
     private String kmRodados;
 
+    private String numeracaoVeiculo;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusVeiculoEnum statusVeiculo;
 
     @OneToOne
     private FuncionarioModel motoristaModel;
+
 
     public UUID getUuid() {
         return uuid;
@@ -86,5 +89,13 @@ public class VeiculoModel {
 
     public void setMotoristaModel(FuncionarioModel motoristaModel) {
         this.motoristaModel = motoristaModel;
+    }
+
+    public String getNumeracaoVeiculo() {
+        return numeracaoVeiculo;
+    }
+
+    public void setNumeracaoVeiculo(String numeracaoVeiculo) {
+        this.numeracaoVeiculo = numeracaoVeiculo;
     }
 }

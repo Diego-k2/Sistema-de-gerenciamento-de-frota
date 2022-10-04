@@ -23,8 +23,8 @@
                     <th scope="row"><a th:href="@{/funcionario/{id} (id=${funcionario.uuid})}"><span th:text="${funcionario.cpf}"></span></a></th>
                     <td><a th:href="@{/funcionario/{id} (id=${funcionario.uuid})}"><span th:text="${funcionario.nome}"></span></a></td>
                     <td><a th:href="@{/funcionario/{id} (id=${funcionario.uuid})}"><span th:text="${funcionario.sobrenome}"></span></a></td>
-                    <td><a th:href="@{/funcionario/{id} (id=${funcionario.uuid})}"><img src="https://img.icons8.com/material/24/2ECC71/edit--v1.png"/></a></td>
-                    <td><a th:href="@{/funcionario/{id} (id=${funcionario.uuid})}"><img src="https://img.icons8.com/material-rounded/24/E74C3C/trash.png"/></a></td>
+                    <td><a th:href="@{/funcionario/alterar/{id} (id=${funcionario.uuid})}"><img src="https://img.icons8.com/material/24/2ECC71/edit--v1.png"/></a></td>
+                    <td><a th:href="@{/funcionario/deletar/{id} (id=${funcionario.uuid})}"><img src="https://img.icons8.com/material-rounded/24/E74C3C/trash.png"/></a></td>
                 </tr>
             </tbody>
         </table>

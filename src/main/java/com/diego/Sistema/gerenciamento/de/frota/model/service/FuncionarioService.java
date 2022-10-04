@@ -2,6 +2,7 @@ package com.diego.Sistema.gerenciamento.de.frota.model.service;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.repository.FuncionarioRepository;
+import org.hibernate.annotations.Target;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +52,16 @@ public class FuncionarioService {
     @Transactional
     public Optional<FuncionarioModel> findById(String id){
         return funcionarioRepository.findById(UUID.fromString(id));
+    }
+
+    @Transactional
+    public void deleteById(String id){
+        funcionarioRepository.deleteById(UUID.fromString(id));
+    }
+
+    @Transactional
+    public Optional<FuncionarioModel> findByEmail(String email){
+        return funcionarioRepository.findByEmail(email);
     }
 
 
