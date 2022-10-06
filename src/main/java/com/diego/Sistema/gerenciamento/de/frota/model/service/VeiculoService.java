@@ -19,6 +19,11 @@ public class VeiculoService {
     }
 
     @Transactional
+    public boolean existsByPlaca(String placa){
+        return veiculoRepository.existsByPlaca(placa);
+    }
+
+    @Transactional
     public void save(VeiculoModel veiculoModel) {
         veiculoRepository.save(veiculoModel);
     }

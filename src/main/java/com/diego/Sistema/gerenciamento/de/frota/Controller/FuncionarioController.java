@@ -4,7 +4,7 @@ package com.diego.Sistema.gerenciamento.de.frota.Controller;
 import com.diego.Sistema.gerenciamento.de.frota.model.dtos.FuncionarioDto;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.service.FuncionarioService;
-import com.diego.Sistema.gerenciamento.de.frota.util.VerificaDadosFuncionarios;
+import com.diego.Sistema.gerenciamento.de.frota.util.VerificaDados;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +19,8 @@ import java.util.List;
 public class FuncionarioController {
 
     final FuncionarioService funcionarioService;
-    final VerificaDadosFuncionarios verificaDadosFuncionarios;
-    public FuncionarioController(FuncionarioService funcionarioService, VerificaDadosFuncionarios verificaDadosFuncionarios) {
+    final VerificaDados verificaDadosFuncionarios;
+    public FuncionarioController(FuncionarioService funcionarioService, VerificaDados verificaDadosFuncionarios) {
         this.funcionarioService = funcionarioService;
         this.verificaDadosFuncionarios = verificaDadosFuncionarios;
     }
@@ -35,7 +35,7 @@ public class FuncionarioController {
     @PostMapping("/salvarFuncionario")
     public String salvarFuncuinario(@Valid FuncionarioDto funcionarioDto, BindingResult bindingResult, Model model){
 
-        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDados(funcionarioDto)){
+        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");
             model.addAttribute("temerro", true);
             return "forms/formNovoFuncionario";
@@ -86,7 +86,7 @@ public class FuncionarioController {
     @PutMapping("/alterando") //TODO ARRUMAR METODO PUT
     public String alterandoFuncionario(@Valid FuncionarioDto funcionarioDto, BindingResult bindingResult, Model model){
 
-        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDados(funcionarioDto)){
+        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");
             model.addAttribute("temerro", true);
             return "forms/formNovoFuncionario";

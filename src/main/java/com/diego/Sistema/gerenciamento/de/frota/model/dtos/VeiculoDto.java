@@ -2,9 +2,6 @@ package com.diego.Sistema.gerenciamento.de.frota.model.dtos;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
-import com.diego.Sistema.gerenciamento.de.frota.model.repository.VeiculoRepository;
-import com.diego.Sistema.gerenciamento.de.frota.model.service.VeiculoService;
-import com.diego.Sistema.gerenciamento.de.frota.util.NumeracaoVeiculo;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,7 +17,7 @@ public class VeiculoDto {
     private String ano;
 
     @NotBlank
-    @Size(max = 6)
+    @Size(max = 7)
     private String placa;
 
     @NotBlank
