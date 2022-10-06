@@ -5,7 +5,6 @@ import com.diego.Sistema.gerenciamento.de.frota.model.dtos.FuncionarioDto;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.service.FuncionarioService;
 import com.diego.Sistema.gerenciamento.de.frota.util.VerificaDadosFuncionarios;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/funcionario")
@@ -95,6 +93,7 @@ public class FuncionarioController {
         }
 
         FuncionarioModel funcionarioModel = funcionarioService.findByEmail(funcionarioDto.getEmail()).get();
+
 
         funcionarioModel.setNome(funcionarioDto.getNome());
         funcionarioModel.setSobrenome(funcionarioDto.getSobrenome());

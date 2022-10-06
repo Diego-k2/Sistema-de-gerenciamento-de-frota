@@ -1,0 +1,30 @@
+a {
+    color: #000000;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #3d3d3d;
+}
+
+.background {
+    background: #FA4D63;
+}
+
+.logo {
+
+    font-family: 'Monoton', cursive;
+    color: #ffff;
+}
+
+.logo h3 {
+    font-size: 50px;
+}
+
+.border-color {
+    border-color: #FA4D63;
+}
+
+.margin-custo {
+    margin: 0 40px;
+}

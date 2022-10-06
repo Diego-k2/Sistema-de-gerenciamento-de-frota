@@ -1,57 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head th:replace="~{fragmentos :: head}"></head> 
-    
-<body>
+  <head th:replace="~{fragmentos :: head}"></head>
+  <body>
 
-  <div th:replace="~{fragmentos :: header}"></div>
+    <div th:replace="~{fragmentos :: header}"></div>
 
-    <div class="container">
-      <div class="d-flex justify-content-center mt-3">
-        <div th:each="funcionario : ${funcionario}" class="card border-color mb-5" style="width: 50rem;">
-          <div class="card-header border-color">
-            <h1>Funcionario</h1>
-          </div>
-          <div class="card-body">
-            <form action="/funcionario/salvarFuncionario" method="post">
-              <div class="justify-content-between">
-                <div class="form-row">
-                  <div class="col">
-                    <label for="nome">Modelo</label>
-                    <input type="text" class="form-control" name="nome" id="nome" th:value="${funcionario.nome}" readonly>
+      <div class="container">
+        <div class="d-flex justify-content-center mt-3">
+          <div class="card border-color mb-5" style="width: 50rem;">
+            <div class="card-header border-color">
+              <h1>Caminhão</h1>
+            </div>
+            <div class="card-body">
+              <form action="/veiculo/salvarVeiculo" method="post">
+                <div class="justify-content-between">
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="nome">Modelo</label>
+                      <input type="text" class="form-control" name="modelo">
+                    </div>
+                    <div class="col">
+                      <label for="sobrenome">Ano</label>
+                      <input type="text" class="form-control" name="ano">
+                    </div>
                   </div>
-                  <div class="col">
-                    <label for="sobrenome">Sobrenome</label>
-                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" th:value="${funcionario.sobrenome}" readonly>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="nome">Placa</label>
+                      <input type="text" class="form-control" name="placa">
+                    </div>
+                    <div class="col mb-3">
+                      <label for="sobrenome">Quilometragem</label>
+                      <input type="text" class="form-control" name="kmRodados">
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-success" value="Cadastrar" style="width: 250px;">
                   </div>
                 </div>
-                <div class="form-row">
-                  <div class="col">
-                    <label for="nome">CPF</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" th:value="${funcionario.cpf}" readonly>
-                  </div>
-                  <div class="col">
-                    <label for="sobrenome">CNH</label>
-                    <input type="text" class="form-control" name="cnh" id="cnh" th:value="${funcionario.cnh}" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="pis">PIS</label>
-                  <input type="text" class="form-control" name="pis" id="pis" th:value="${funcionario.pis}" readonly>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" name="email" id="exampleInputEmail1" th:value="${funcionario.email}" readonly>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
+
       </div>
 
-    </div>
-
-</body>
-</html>
-</body>
+  </body>
 </html>

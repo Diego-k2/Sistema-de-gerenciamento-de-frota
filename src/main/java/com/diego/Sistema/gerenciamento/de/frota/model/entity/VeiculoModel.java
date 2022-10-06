@@ -16,15 +16,16 @@ public class VeiculoModel {
     @Column(nullable = false, length = 150)
     private String modelo;
 
-    @Column(nullable = false, length = 4)
+    @Column(nullable = false)
     private String ano;
 
-    @Column(nullable = false, length = 6)
+    @Column(nullable = false, unique = true)
     private String placa;
 
     @Column(nullable = false)
     private String kmRodados;
 
+    @Column(unique = true)
     private String numeracaoVeiculo;
 
     @Column(nullable = false)

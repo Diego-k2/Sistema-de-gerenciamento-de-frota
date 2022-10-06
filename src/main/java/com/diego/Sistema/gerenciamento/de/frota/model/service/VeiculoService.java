@@ -1,19 +1,26 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.service;
 
+import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
+import com.diego.Sistema.gerenciamento.de.frota.model.repository.VeiculoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VeiculoService {
 
-    final VeiculoService veiculoService;
-    public VeiculoService(VeiculoService veiculoService){
-        this.veiculoService = veiculoService;
+    final VeiculoRepository veiculoRepository;
+    public VeiculoService(VeiculoRepository veiculoRepository){
+        this.veiculoRepository = veiculoRepository;
     }
 
     @Transactional
     public boolean existsByNumeracaoVeiculo(String numeracaoVeiculo) {
-        return existsByNumeracaoVeiculo(numeracaoVeiculo);
+        return veiculoRepository.existsByNumeracaoVeiculo(numeracaoVeiculo);
+    }
+
+    @Transactional
+    public void save(VeiculoModel veiculoModel) {
+        veiculoRepository.save(veiculoModel);
     }
 
 

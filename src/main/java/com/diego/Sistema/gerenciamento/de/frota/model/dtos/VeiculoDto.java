@@ -2,19 +2,14 @@ package com.diego.Sistema.gerenciamento.de.frota.model.dtos;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
-import com.diego.Sistema.gerenciamento.de.frota.model.service.FuncionarioService;
+import com.diego.Sistema.gerenciamento.de.frota.model.repository.VeiculoRepository;
+import com.diego.Sistema.gerenciamento.de.frota.model.service.VeiculoService;
 import com.diego.Sistema.gerenciamento.de.frota.util.NumeracaoVeiculo;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class VeiculoDto {
-
-    final NumeracaoVeiculo numeracaoVeiculo;
-    public VeiculoDto(NumeracaoVeiculo numeracaoVeiculo, FuncionarioService funcionarioService) {
-        this.numeracaoVeiculo = numeracaoVeiculo;
-    }
-
 
     @NotBlank
     @Size(max = 150)
@@ -31,13 +26,46 @@ public class VeiculoDto {
     @NotBlank
     private String kmRodados;
 
+
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getKmRodados() {
+        return kmRodados;
+    }
+
+    public void setKmRodados(String kmRodados) {
+        this.kmRodados = kmRodados;
+    }
+
     public VeiculoModel toVeiculoModel(){
         VeiculoModel veiculoModel = new VeiculoModel();
         veiculoModel.setModelo(this.modelo);
         veiculoModel.setAno(this.ano);
         veiculoModel.setPlaca(this.placa);
         veiculoModel.setKmRodados(this.kmRodados);
-        veiculoModel.setNumeracaoVeiculo(numeracaoVeiculo.numeraVeiculo());
         veiculoModel.setStatusVeiculo(StatusVeiculoEnum.DISPONIVEL);
 
         return veiculoModel;

@@ -11,5 +11,6 @@ import java.util.UUID;
 public interface VeiculoRepository extends JpaRepository<VeiculoModel, UUID> {
 
 
-    boolean existsByNumeracaoVeiculo(String numeracaoVeiculo);
+    boolean existsByNumeracaoVeiculo(String numeracao);
+
 }

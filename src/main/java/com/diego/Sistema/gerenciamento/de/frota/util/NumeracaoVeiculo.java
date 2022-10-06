@@ -12,20 +12,18 @@ public class NumeracaoVeiculo {
     }
 
 
-    private  final String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWYXZ";
-
-
     public String numeraVeiculo(){
 
+        final String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWYXZ";
         int numero = (int) Math.round(Math.random() * 10000);
         String letra = String.valueOf(alfabeto.charAt((int) Math.round(Math.random() * 25)));
 
-        if(veiculoService.existsByNumeracaoVeiculo(numero + letra)){
+        String numeracao = numero + letra;
+
+        if(veiculoService.existsByNumeracaoVeiculo(numeracao)){
             numeraVeiculo();
         }
 
-        return numero + letra;
+        return numeracao;
     }
-
-
 }
