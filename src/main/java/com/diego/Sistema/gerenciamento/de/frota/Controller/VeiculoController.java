@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/veiculo")
@@ -49,4 +50,16 @@ public class VeiculoController {
 
         return "redirect:/";
     }
+
+
+    @GetMapping("/todos")
+    public String todosVeiculos(Model model) {
+
+        List<VeiculoModel> veiculos = veiculoService.findAll();
+        model.addAttribute("veiculos", veiculos);
+
+        return "veiculo/todosveiculos";
+    }
+
+
 }

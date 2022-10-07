@@ -64,6 +64,4 @@ public class FuncionarioService {
         return funcionarioRepository.findByEmail(email);
     }
 
-
-
 }

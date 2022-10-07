@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{fragmentos :: head}">
+</head>
+<body>
+
+    <div th:replace="~{fragmentos :: header}"></div>
+    
+    <div class="container">
+        <table class="table">
+            <thead>
+                <th scope="col">Nº Registro</th>
+                <th scope="col">Model</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Km</th>
+                <th scope="col">Status</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody th:each="veiculo : ${veiculos}">
+                <th scope="rol"><span th:text="${veiculo.numeracaoVeiculo}"></span></th>
+                <td><span th:text="${veiculo.modelo}"></span></td>
+                <td><span th:text="${veiculo.placa}"></span></td>
+                <td><span th:text="${veiculo.kmRodados}"></span></td>
+                <td>
+                    <span th:text="${veiculo.statusVeiculo}"></span></span>
+                </td>
+                <td><img src="https://img.icons8.com/material/24/2ECC71/edit--v1.png"/></a></td>
+                <td><img src="https://img.icons8.com/material-rounded/24/E74C3C/trash.png"/></td>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+</body>
+</html>
