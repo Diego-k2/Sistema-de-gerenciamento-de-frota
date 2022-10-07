@@ -24,7 +24,6 @@ public class FuncionarioDto {
     @NotBlank
     private String email;
 
-    @NotBlank
     private String senha;
 
     public String getNome() {

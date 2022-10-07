@@ -35,7 +35,8 @@ public class FuncionarioController {
     @PostMapping("/salvarFuncionario")
     public String salvarFuncuinario(@Valid FuncionarioDto funcionarioDto, BindingResult bindingResult, Model model){
 
-        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)){
+        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)
+                                || funcionarioDto.getSenha() == null){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");
             model.addAttribute("temerro", true);
             return "funcionario/novofuncionario";
@@ -86,7 +87,7 @@ public class FuncionarioController {
     @PutMapping("/alterando") //TODO ARRUMAR METODO PUT
     public String alterandoFuncionario(@Valid FuncionarioDto funcionarioDto, BindingResult bindingResult, Model model){
 
-        if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)){
+        if(bindingResult.hasErrors()){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");
             model.addAttribute("temerro", true);
             return "funcionario/editarfuncionario";
@@ -101,6 +102,8 @@ public class FuncionarioController {
         funcionarioModel.setCnh(funcionarioDto.getCnh());
         funcionarioModel.setPis(funcionarioDto.getPis());
         funcionarioModel.setEmail(funcionarioDto.getEmail());
+        System.out.println(funcionarioModel.getUuid());
+
 
         funcionarioService.save(funcionarioModel);
 
