@@ -29,7 +29,7 @@ public class FuncionarioController {
     @GetMapping("/novo")
     public String formNovoFuncionario() {
 
-        return "forms/formNovoFuncionario";
+        return "funcionario/novofuncionario";
     }
 
     @PostMapping("/salvarFuncionario")
@@ -38,7 +38,7 @@ public class FuncionarioController {
         if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");
             model.addAttribute("temerro", true);
-            return "forms/formNovoFuncionario";
+            return "funcionario/novofuncionario";
         }
 
         FuncionarioModel funcionarioModel = funcionarioDto.toFuncionarioModel();
@@ -66,7 +66,7 @@ public class FuncionarioController {
 
         model.addAttribute("funcionario", funcionario);
 
-        return "funcionario/funcionarioUnico";
+        return "funcionario/funcionariounico";
     }
 
     @GetMapping("deletar/{id}")
@@ -80,7 +80,7 @@ public class FuncionarioController {
     public String alterarFuncionario(@PathVariable("id") String id, Model model){
         FuncionarioModel funcionarioModel = funcionarioService.findById(id).get();
         model.addAttribute("funcionario", funcionarioModel);
-        return "forms/editarFuncionario";
+        return "funcionario/editarfuncionario";
     }
 
     @PutMapping("/alterando") //TODO ARRUMAR METODO PUT
@@ -89,7 +89,7 @@ public class FuncionarioController {
         if(bindingResult.hasErrors() || verificaDadosFuncionarios.verificaDuplicidadeDadosFuncionario(funcionarioDto)){
             model.addAttribute("erro", "Algum campo em branco ou dados duplicados");
             model.addAttribute("temerro", true);
-            return "forms/formNovoFuncionario";
+            return "funcionario/editarfuncionario";
         }
 
         FuncionarioModel funcionarioModel = funcionarioService.findByEmail(funcionarioDto.getEmail()).get();

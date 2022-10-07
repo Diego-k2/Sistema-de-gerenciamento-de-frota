@@ -31,7 +31,7 @@ public class VeiculoController {
 
     @GetMapping("/novo")
     public String novoVeiculo(){
-        return "forms/formNovoVeiculo";
+        return "veiculo/novoveiculo";
     }
 
     @PostMapping("/salvarVeiculo")
@@ -40,7 +40,7 @@ public class VeiculoController {
         if(bindingResult.hasErrors() || verificaDados.verificaDuplicidadeDadosVeiculo(veiculoDto)){
             model.addAttribute("temerro", true);
             model.addAttribute("erro", "Algum campo em branco ou duplicado");
-            return "forms/formNovoVeiculo";
+            return "veiculo/novoveiculo";
         }
 
         VeiculoModel veiculoModel = veiculoDto.toVeiculoModel();

@@ -11,6 +11,6 @@ public class AdminController {
 
     @GetMapping
     public String mainPage(){
-        return "mainAdm";
+        return "principaladm";
     }
 }
