@@ -1,6 +1,7 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.service;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
+import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
 import com.diego.Sistema.gerenciamento.de.frota.model.repository.VeiculoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +51,10 @@ public class VeiculoService {
     @Transactional
     public Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo) {
         return veiculoRepository.findByPlaca(numeracaoVeiculo);
+    }
+
+    @Transactional
+    public List<VeiculoModel> findAllByStatusVeiculo(String status){
+        return veiculoRepository.findAllByStatusVeiculo(StatusVeiculoEnum.valueOf(status));
     }
 }

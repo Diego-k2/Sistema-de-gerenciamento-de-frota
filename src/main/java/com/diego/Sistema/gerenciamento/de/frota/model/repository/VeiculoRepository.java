@@ -1,10 +1,11 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.repository;
 
-import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
+import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,5 +19,5 @@ public interface VeiculoRepository extends JpaRepository<VeiculoModel, UUID> {
 
     Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo);
 
-
+    List<VeiculoModel> findAllByStatusVeiculo(StatusVeiculoEnum status);
 }

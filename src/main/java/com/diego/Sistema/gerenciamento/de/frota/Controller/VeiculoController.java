@@ -2,6 +2,8 @@ package com.diego.Sistema.gerenciamento.de.frota.Controller;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.dtos.VeiculoDto;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
+import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
+import com.diego.Sistema.gerenciamento.de.frota.model.service.FuncionarioService;
 import com.diego.Sistema.gerenciamento.de.frota.model.service.VeiculoService;
 import com.diego.Sistema.gerenciamento.de.frota.util.NumeracaoVeiculo;
 import com.diego.Sistema.gerenciamento.de.frota.util.VerificaDados;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/veiculo")
@@ -21,10 +24,12 @@ public class VeiculoController {
     final VeiculoService veiculoService;
     final NumeracaoVeiculo numeracaoVeiculo;
     final VerificaDados verificaDados;
-    public VeiculoController(VeiculoService veiculoService, NumeracaoVeiculo numeracaoVeiculo, VerificaDados verificaDados) {
+    final FuncionarioService funcionarioService;
+    public VeiculoController(VeiculoService veiculoService, NumeracaoVeiculo numeracaoVeiculo, VerificaDados verificaDados, FuncionarioService funcionarioService) {
         this.veiculoService = veiculoService;
         this.numeracaoVeiculo = numeracaoVeiculo;
         this.verificaDados = verificaDados;
+        this.funcionarioService = funcionarioService;
     }
 
 
@@ -85,6 +90,30 @@ public class VeiculoController {
         veiculoService.save(veiculoModel);
 
         return "redirect:/veiculo/todos";
+    }
+
+
+    @GetMapping("/{status}")
+    public String veiculosDisponiveis(@PathVariable("status") String status, Model model){
+
+        List<VeiculoModel> veiculoModelList = veiculoService.findAllByStatusVeiculo(status.toUpperCase(Locale.ROOT));
+
+        model.addAttribute("veiculos", veiculoModelList);
+
+        return "veiculo/veiculostatus";
+    }
+
+    @GetMapping("/solicitar/{id}")
+    public String solicitandoVeiculo(@PathVariable("id") String id){
+
+       VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
+
+       veiculoModel.setMotoristaModel(funcionarioService.findByEmail("degosantosiva@gmail.com").get());
+       veiculoModel.setStatusVeiculo(StatusVeiculoEnum.AGUARDANDO_LIBERAÇÃO);
+
+       veiculoService.save(veiculoModel);
+
+        return "redirect:/user";
     }
 
 
