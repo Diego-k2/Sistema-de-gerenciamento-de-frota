@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class VeiculoService {
@@ -36,5 +37,9 @@ public class VeiculoService {
         return veiculoRepository.findAll();
     }
 
+    @Transactional
+    public void deleteVeiculo(String id){
+        veiculoRepository.deleteById(UUID.fromString(id));
+    }
 
 }

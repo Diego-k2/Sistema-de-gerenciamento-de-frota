@@ -8,9 +8,7 @@ import com.diego.Sistema.gerenciamento.de.frota.util.VerificaDados;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -48,7 +46,7 @@ public class VeiculoController {
         veiculoModel.setNumeracaoVeiculo(numeracaoVeiculo.numeraVeiculo());
         veiculoService.save(veiculoModel);
 
-        return "redirect:/";
+        return "redirect:/veiculo/todos";
     }
 
 
@@ -59,6 +57,12 @@ public class VeiculoController {
         model.addAttribute("veiculos", veiculos);
 
         return "veiculo/todosveiculos";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteVeiculo(@PathVariable("id") String id){
+        veiculoService.deleteVeiculo(id);
+        return "redirect:/veiculo/todos";
     }
 
 
