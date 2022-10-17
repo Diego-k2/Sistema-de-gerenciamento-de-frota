@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head th:replace="~{fragmentos :: head}"></head>
+  <body>
+
+    <div th:replace="~{fragmentos :: header}"></div>
+
+      <div class="container">
+        <div class="d-flex justify-content-center mt-3">
+          <div class="card border-color mb-5" style="width: 50rem;">
+            <span th:text="${erro}" th:classappend="${temerro} ? 'alert alert-warning': ''"></span>
+            <div class="card-header border-color">
+              <h1>Caminhão</h1>
+            </div>
+            <div class="card-body">
+              <form action="/veiculo/alterar" th:method="put" th:each="veiculo : ${veiculo}">
+                <div class="justify-content-between">
+                    <div>
+                        <label for="nome">Numero de Matricula</label>
+                        <input type="text" class="form-control" name="numeracaoVeiculo" th:value="${veiculo.numeracaoVeiculo}" readonly>
+                    </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="nome">Modelo</label>
+                      <input type="text" class="form-control" name="modelo" th:value="${veiculo.modelo}">
+                    </div>
+                    <div class="col">
+                      <label for="sobrenome">Ano</label>
+                      <input type="text" class="form-control" name="ano" th:value="${veiculo.ano}">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="nome">Placa</label>
+                      <input type="text" class="form-control" name="placa" th:value="${veiculo.placa}">
+                    </div>
+                    <div class="col mb-3">
+                      <label for="sobrenome">Quilometragem</label>
+                      <input type="text" class="form-control" name="kmRodados" th:value="${veiculo.kmRodados}">
+                    </div>
+                  </div>
+                  <div>
+                    <label for="nome">Status veiculo</label>
+                    <th:block th:switch="${#strings.toString(veiculo.statusVeiculo)}">
+                        <div th:case="DISPONIVEL" class="card-header alert-success mb-2">DISPONIVEL</div>
+                        <div th:case="AGUARDANDO_LIBERAÇÃO" class="card-header alert-warning mb-2">AGUARDANDO LIBERAÇÃO</div>
+                        <div th:case="EM_USO" class="card-header alert-danger mb-2">EM USO</div>
+                    </th:block>
+                </div>
+                  <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-success" value="Atualizar" style="width: 250px;">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+  </body>
+</html>

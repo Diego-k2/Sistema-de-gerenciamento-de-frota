@@ -23,7 +23,7 @@
                 <td><span th:text="${veiculo.placa}"></span></td>
                 <td><span th:text="${veiculo.kmRodados}"></span></td>
                 <td>
-                    <span th:text="${veiculo.statusVeiculo}"></span></span>
+                    <span th:text="${veiculo.statusVeiculo}"></span>
                 </td>
                 <td><a th:href="@{/veiculo/editar/{id} (id=${veiculo.uuid})}"><img src="https://img.icons8.com/material/24/2ECC71/edit--v1.png"/></a></td>
                 <td><a th:href="@{/veiculo/delete/{id} (id=${veiculo.uuid})}"><img src="https://img.icons8.com/material-rounded/24/E74C3C/trash.png"/></a></td>

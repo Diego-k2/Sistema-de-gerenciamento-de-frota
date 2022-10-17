@@ -42,4 +42,13 @@ public class VeiculoService {
         veiculoRepository.deleteById(UUID.fromString(id));
     }
 
+    @Transactional
+    public Optional<VeiculoModel> findVeiculoById(String id){
+        return veiculoRepository.findById(UUID.fromString(id));
+    }
+
+    @Transactional
+    public Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo) {
+        return veiculoRepository.findByPlaca(numeracaoVeiculo);
+    }
 }

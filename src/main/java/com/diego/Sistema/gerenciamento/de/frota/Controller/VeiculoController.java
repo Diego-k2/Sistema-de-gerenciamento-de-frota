@@ -65,5 +65,27 @@ public class VeiculoController {
         return "redirect:/veiculo/todos";
     }
 
+    @GetMapping("/editar/{id}")
+    public String editarVeiculo(@PathVariable("id")String id, Model model){
+        VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
+        model.addAttribute("veiculo", veiculoModel);
+
+        return "/veiculo/editarveiculo";
+    }
+
+    @PutMapping("/alterar")
+    public String editandoVeiculo(VeiculoDto veiculoDto){
+        VeiculoModel veiculoModel = veiculoService.findByPlaca(veiculoDto.getPlaca()).get();
+
+        veiculoModel.setModelo(veiculoDto.getModelo());
+        veiculoModel.setAno(veiculoDto.getAno());
+        veiculoModel.setPlaca(veiculoDto.getPlaca());
+        veiculoModel.setKmRodados(veiculoDto.getKmRodados());
+
+        veiculoService.save(veiculoModel);
+
+        return "redirect:/veiculo/todos";
+    }
+
 
 }
