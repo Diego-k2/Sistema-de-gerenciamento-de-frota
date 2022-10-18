@@ -10,7 +10,7 @@
           <div class="card border-color mb-5" style="width: 50rem;">
             <span th:text="${erro}" th:classappend="${temerro} ? 'alert alert-warning': ''"></span>
             <div class="card-header border-color">
-              <h1>Caminhão</h1>
+              <h1>Editar caminhão</h1>
             </div>
             <div class="card-body">
               <form action="/veiculo/alterar" th:method="put" th:each="veiculo : ${veiculo}">

@@ -132,7 +132,7 @@ public class VeiculoController {
 
         VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
 
-
+        //TODO METODO PARA NAO LIBERAR VEICULO CASO FUNCIONARIO JA TENHA UM EM USO
 
         if(Boolean.parseBoolean(aprovado)) {
             veiculoModel.setStatusVeiculo(StatusVeiculoEnum.EM_USO);
