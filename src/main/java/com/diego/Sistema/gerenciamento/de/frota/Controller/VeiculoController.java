@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/veiculo")
@@ -114,6 +115,35 @@ public class VeiculoController {
        veiculoService.save(veiculoModel);
 
         return "redirect:/user";
+    }
+
+    @GetMapping("/aguardando")
+    public String aguardandoLiberacao(Model model){
+
+        List<VeiculoModel> veiculoModelList = veiculoService.findAllByStatusVeiculo(String.valueOf(StatusVeiculoEnum.AGUARDANDO_LIBERAÇÃO));
+
+        model.addAttribute("veiculos", veiculoModelList);
+
+        return "/veiculo/aguardandoliberacao";
+    }
+
+    @GetMapping("/aprovacao/{id}")
+    public String aprovado(@RequestParam("aprovado")String aprovado, @PathVariable("id")String id){
+
+        VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
+
+
+
+        if(Boolean.parseBoolean(aprovado)) {
+            veiculoModel.setStatusVeiculo(StatusVeiculoEnum.EM_USO);
+        } else if(!Boolean.parseBoolean(aprovado)){
+            veiculoModel.setMotoristaModel(null);
+            veiculoModel.setStatusVeiculo(StatusVeiculoEnum.DISPONIVEL);
+        }
+
+        veiculoService.save(veiculoModel);
+
+        return "redirect:/veiculo/aguardando";
     }
 
 

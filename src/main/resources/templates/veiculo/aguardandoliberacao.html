@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{fragmentos :: head}">
+</head>
+<body>
+
+    <div th:replace="~{fragmentos :: header}"></div>
+    
+    <div class="container">
+        <div class="card-header">
+            <h1> Veiculos aguardando</h1>
+        </div>
+        <table class="table">
+            <thead>
+                <th scope="col">Nº Registro</th>
+                <th scope="col">Model</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Km</th>
+                <th scope="col">Solicitante</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody th:each="veiculo : ${veiculos}">
+                <th scope="rol"><span th:text="${veiculo.numeracaoVeiculo}"></span></th>
+                <td><span th:text="${veiculo.modelo}"></span></td>
+                <td><span th:text="${veiculo.placa}"></span></td>
+                <td><span th:text="${veiculo.kmRodados}"></span></td>
+                <td>
+                    <span th:text="${veiculo.motoristaModel.nome}  + ' ' + ${veiculo.motoristaModel.sobrenome}"></span>
+                </td> 
+                <td><a th:href="@{/veiculo/aprovacao/{id}?aprovado=true (id=${veiculo.uuid})}"><button type="button" class="btn btn-outline-success">Aprovar</button></a></td>
+                <td><a th:href="@{/veiculo/aprovacao/{id}?aprovado=false (id=${veiculo.uuid})}"><button type="button" class="btn btn-outline-danger">Recusar</button></td>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+</body>
+</html>
