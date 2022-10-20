@@ -10,6 +10,11 @@
         <div class="card-header">
             <h1>Veiculos disponiveis</h1>
         </div>
+
+        <div th:classappend="${temVeiculo} ? 'alert alert-danger' : '' " role="alert">
+            <span th:text="${erro}"></span>
+          </div>
+
         <table class="table">
             <thead>
                 <th scope="col">Nº Registro</th>

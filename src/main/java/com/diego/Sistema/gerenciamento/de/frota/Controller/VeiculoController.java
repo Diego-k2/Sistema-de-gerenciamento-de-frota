@@ -100,16 +100,24 @@ public class VeiculoController {
         List<VeiculoModel> veiculoModelList = veiculoService.findAllByStatusVeiculo(status.toUpperCase(Locale.ROOT));
 
         model.addAttribute("veiculos", veiculoModelList);
-
         return "veiculo/veiculostatus";
     }
 
     @GetMapping("/solicitar/{id}")
-    public String solicitandoVeiculo(@PathVariable("id") String id){
+    public String solicitandoVeiculo(@PathVariable("id") String id, Model model){
 
        VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
 
+       if(veiculoService.existsByMotoristaModel(funcionarioService.findByEmail("degosantosiva@gmail.com").get())){
+           model.addAttribute("temVeiculo", true);
+           model.addAttribute("erro", "Motorista já possui veiculo ou possui solicitação em análise");
+           List<VeiculoModel> veiculoModelList = veiculoService.findAllByStatusVeiculo("DISPONIVEL");
+           model.addAttribute("veiculos", veiculoModelList);
+           return "veiculo/veiculostatus";
+       }
+
        veiculoModel.setMotoristaModel(funcionarioService.findByEmail("degosantosiva@gmail.com").get());
+
        veiculoModel.setStatusVeiculo(StatusVeiculoEnum.AGUARDANDO_LIBERAÇÃO);
 
        veiculoService.save(veiculoModel);

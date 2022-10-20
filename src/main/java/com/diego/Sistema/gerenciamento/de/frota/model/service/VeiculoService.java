@@ -1,5 +1,6 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.service;
 
+import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
 import com.diego.Sistema.gerenciamento.de.frota.model.repository.VeiculoRepository;
@@ -56,5 +57,10 @@ public class VeiculoService {
     @Transactional
     public List<VeiculoModel> findAllByStatusVeiculo(String status){
         return veiculoRepository.findAllByStatusVeiculo(StatusVeiculoEnum.valueOf(status));
+    }
+
+    @Transactional
+    public boolean existsByMotoristaModel(FuncionarioModel funcionarioModel){
+        return veiculoRepository.existsByMotoristaModel(funcionarioModel);
     }
 }

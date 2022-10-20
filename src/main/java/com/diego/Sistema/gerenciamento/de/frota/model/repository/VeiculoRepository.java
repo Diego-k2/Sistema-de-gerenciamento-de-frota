@@ -1,5 +1,6 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.repository;
 
+import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +17,8 @@ public interface VeiculoRepository extends JpaRepository<VeiculoModel, UUID> {
     boolean existsByNumeracaoVeiculo(String numeracao);
 
     boolean existsByPlaca(String placa);
+
+    boolean existsByMotoristaModel(FuncionarioModel funcionarioModel);
 
     Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo);
 
