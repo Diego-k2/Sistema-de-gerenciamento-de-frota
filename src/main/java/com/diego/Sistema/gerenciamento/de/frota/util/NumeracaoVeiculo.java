@@ -26,4 +26,12 @@ public class NumeracaoVeiculo {
 
         return numeracao;
     }
+
+    public String geraCodigoEmprestimo(){
+        String numeracao = String.valueOf(Math.round(Math.random() * 10000));
+        if(veiculoService.existsByNumeracaoEmprestimo(numeracao)){
+            geraCodigoEmprestimo();
+        }
+         return numeracao;
+    }
 }

@@ -1,9 +1,12 @@
 package com.diego.Sistema.gerenciamento.de.frota.Controller;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.dtos.VeiculoDto;
+import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
+import com.diego.Sistema.gerenciamento.de.frota.model.entity.HistoricoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
 import com.diego.Sistema.gerenciamento.de.frota.model.service.FuncionarioService;
+import com.diego.Sistema.gerenciamento.de.frota.model.service.HistoricoService;
 import com.diego.Sistema.gerenciamento.de.frota.model.service.VeiculoService;
 import com.diego.Sistema.gerenciamento.de.frota.util.NumeracaoVeiculo;
 import com.diego.Sistema.gerenciamento.de.frota.util.VerificaDados;
@@ -13,9 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/veiculo")
@@ -26,11 +29,14 @@ public class VeiculoController {
     final NumeracaoVeiculo numeracaoVeiculo;
     final VerificaDados verificaDados;
     final FuncionarioService funcionarioService;
-    public VeiculoController(VeiculoService veiculoService, NumeracaoVeiculo numeracaoVeiculo, VerificaDados verificaDados, FuncionarioService funcionarioService) {
+    final HistoricoService historicoService;
+    public VeiculoController(VeiculoService veiculoService, NumeracaoVeiculo numeracaoVeiculo, VerificaDados verificaDados,
+                             FuncionarioService funcionarioService, HistoricoService historicoService) {
         this.veiculoService = veiculoService;
         this.numeracaoVeiculo = numeracaoVeiculo;
         this.verificaDados = verificaDados;
         this.funcionarioService = funcionarioService;
+        this.historicoService = historicoService;
     }
 
 
@@ -139,11 +145,15 @@ public class VeiculoController {
     public String aprovado(@RequestParam("aprovado")String aprovado, @PathVariable("id")String id){
 
         VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
-
-        //TODO METODO PARA NAO LIBERAR VEICULO CASO FUNCIONARIO JA TENHA UM EM USO
-
+        HistoricoModel historicoModel = new HistoricoModel();
+        String codigoEmprestimo = numeracaoVeiculo.geraCodigoEmprestimo();
         if(Boolean.parseBoolean(aprovado)) {
             veiculoModel.setStatusVeiculo(StatusVeiculoEnum.EM_USO);
+            veiculoModel.setNumeracaoEmprestimo(codigoEmprestimo);
+            historicoModel.setDtEmprestimo(new Date());
+            historicoModel.setVeiculoModel(veiculoModel);
+            historicoModel.setCodigoEmprestimo(codigoEmprestimo);
+            historicoService.save(historicoModel);
         } else if(!Boolean.parseBoolean(aprovado)){
             veiculoModel.setMotoristaModel(null);
             veiculoModel.setStatusVeiculo(StatusVeiculoEnum.DISPONIVEL);
@@ -153,6 +163,26 @@ public class VeiculoController {
 
         return "redirect:/veiculo/aguardando";
     }
+
+    @GetMapping("/meu/atual")
+    public String veiculoEmprestado(Model model){ //USAR O PRINCIPAL PRA FAZER ISSO
+
+       FuncionarioModel funcionarioModel = funcionarioService.findByEmail("degosantosiva@gmail.com").get();
+
+       VeiculoModel veiculoModel = veiculoService.findByMotoristaModel(funcionarioModel);
+
+       if(veiculoModel == null){
+           model.addAttribute("temerro", true);
+           model.addAttribute("erro", "Usuario não possui veiculo em seu nome");
+           return "veiculo/meuveiculo";
+       }
+
+       model.addAttribute("veiculo", veiculoModel);
+
+       return "veiculo/meuveiculo";
+    }
+
+
 
 
 }

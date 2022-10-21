@@ -35,6 +35,8 @@ public class VeiculoModel {
     @OneToOne
     private FuncionarioModel motoristaModel;
 
+    @Column(unique = true)
+    private String numeracaoEmprestimo;
 
     public UUID getUuid() {
         return uuid;
@@ -98,5 +100,13 @@ public class VeiculoModel {
 
     public void setNumeracaoVeiculo(String numeracaoVeiculo) {
         this.numeracaoVeiculo = numeracaoVeiculo;
+    }
+
+    public String getNumeracaoEmprestimo() {
+        return numeracaoEmprestimo;
+    }
+
+    public void setNumeracaoEmprestimo(String numeracaoEmprestimo) {
+        this.numeracaoEmprestimo = numeracaoEmprestimo;
     }
 }

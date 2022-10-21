@@ -63,4 +63,17 @@ public class VeiculoService {
     public boolean existsByMotoristaModel(FuncionarioModel funcionarioModel){
         return veiculoRepository.existsByMotoristaModel(funcionarioModel);
     }
+
+    @Transactional
+    public VeiculoModel findByMotoristaModel(FuncionarioModel funcionarioModel) {
+        return veiculoRepository.findByMotoristaModel(funcionarioModel);
+    }
+
+    @Transactional
+    public boolean existsByNumeracaoEmprestimo(String numeracaoEmprestimo){
+        return veiculoRepository.existsByNumeracaoEmprestimo(numeracaoEmprestimo);
+    }
+
+
+
 }

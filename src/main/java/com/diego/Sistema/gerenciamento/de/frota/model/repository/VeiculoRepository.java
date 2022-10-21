@@ -20,7 +20,12 @@ public interface VeiculoRepository extends JpaRepository<VeiculoModel, UUID> {
 
     boolean existsByMotoristaModel(FuncionarioModel funcionarioModel);
 
+    boolean existsByNumeracaoEmprestimo(String numeracaoEmprestimo);
+
     Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo);
 
     List<VeiculoModel> findAllByStatusVeiculo(StatusVeiculoEnum status);
+
+    VeiculoModel findByMotoristaModel(FuncionarioModel funcionarioModel);
+
 }
