@@ -65,7 +65,7 @@ public class VeiculoController {
     @GetMapping("/todos")
     public String todosVeiculos(Model model) {
 
-        List<VeiculoModel> veiculos = veiculoService.findAll();
+        List<VeiculoModel> veiculos = veiculoService.findAllByIsAtivo();
         model.addAttribute("veiculos", veiculos);
 
         return "veiculo/todosveiculos";
@@ -73,7 +73,9 @@ public class VeiculoController {
 
     @GetMapping("/delete/{id}")
     public String deleteVeiculo(@PathVariable("id") String id){
-        veiculoService.deleteVeiculo(id);
+        VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
+        veiculoModel.setIsAtivo(0);
+        veiculoService.save(veiculoModel);
         return "redirect:/veiculo/todos";
     }
 

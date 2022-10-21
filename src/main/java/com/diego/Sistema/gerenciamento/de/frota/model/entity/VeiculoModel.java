@@ -38,6 +38,9 @@ public class VeiculoModel {
     @Column(unique = true)
     private String numeracaoEmprestimo;
 
+    @Column(nullable = false)
+    private int isAtivo = 1;
+
     public UUID getUuid() {
         return uuid;
     }
@@ -108,5 +111,13 @@ public class VeiculoModel {
 
     public void setNumeracaoEmprestimo(String numeracaoEmprestimo) {
         this.numeracaoEmprestimo = numeracaoEmprestimo;
+    }
+
+    public int getIsAtivo() {
+        return isAtivo;
+    }
+
+    public void setIsAtivo(int isAtivo) {
+        this.isAtivo = isAtivo;
     }
 }

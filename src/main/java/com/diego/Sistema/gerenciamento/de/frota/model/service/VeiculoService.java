@@ -51,12 +51,12 @@ public class VeiculoService {
 
     @Transactional
     public Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo) {
-        return veiculoRepository.findByPlaca(numeracaoVeiculo);
+        return veiculoRepository.findByPlacaAndIsAtivo(numeracaoVeiculo, 1);
     }
 
     @Transactional
     public List<VeiculoModel> findAllByStatusVeiculo(String status){
-        return veiculoRepository.findAllByStatusVeiculo(StatusVeiculoEnum.valueOf(status));
+        return veiculoRepository.findAllByStatusVeiculoAndAndIsAtivo(StatusVeiculoEnum.valueOf(status), 1);
     }
 
     @Transactional
@@ -66,12 +66,17 @@ public class VeiculoService {
 
     @Transactional
     public VeiculoModel findByMotoristaModel(FuncionarioModel funcionarioModel) {
-        return veiculoRepository.findByMotoristaModel(funcionarioModel);
+        return veiculoRepository.findByMotoristaModelAndIsAtivo(funcionarioModel, 1);
     }
 
     @Transactional
     public boolean existsByNumeracaoEmprestimo(String numeracaoEmprestimo){
         return veiculoRepository.existsByNumeracaoEmprestimo(numeracaoEmprestimo);
+    }
+
+    @Transactional
+    public List<VeiculoModel> findAllByIsAtivo(){
+        return veiculoRepository.findAllByIsAtivo(1);
     }
 
 

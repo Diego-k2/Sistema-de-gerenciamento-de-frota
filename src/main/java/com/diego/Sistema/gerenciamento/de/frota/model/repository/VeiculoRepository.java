@@ -22,10 +22,12 @@ public interface VeiculoRepository extends JpaRepository<VeiculoModel, UUID> {
 
     boolean existsByNumeracaoEmprestimo(String numeracaoEmprestimo);
 
-    Optional<VeiculoModel> findByPlaca(String numeracaoVeiculo);
+    Optional<VeiculoModel> findByPlacaAndIsAtivo(String numeracaoVeiculo, int isAtivo);
 
-    List<VeiculoModel> findAllByStatusVeiculo(StatusVeiculoEnum status);
+    List<VeiculoModel> findAllByStatusVeiculoAndAndIsAtivo(StatusVeiculoEnum status, int isAtivo);
 
-    VeiculoModel findByMotoristaModel(FuncionarioModel funcionarioModel);
+    VeiculoModel findByMotoristaModelAndIsAtivo(FuncionarioModel funcionarioModel, int isAtivo);
+
+    List<VeiculoModel> findAllByIsAtivo(int ativo);
 
 }
