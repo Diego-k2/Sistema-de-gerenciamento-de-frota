@@ -171,7 +171,7 @@ public class VeiculoController {
 
        VeiculoModel veiculoModel = veiculoService.findByMotoristaModel(funcionarioModel);
 
-       if(veiculoModel == null){
+       if(veiculoModel == null || veiculoModel.getStatusVeiculo() != StatusVeiculoEnum.EM_USO){
            model.addAttribute("temerro", true);
            model.addAttribute("erro", "Usuario não possui veiculo em seu nome");
            return "veiculo/meuveiculo";
