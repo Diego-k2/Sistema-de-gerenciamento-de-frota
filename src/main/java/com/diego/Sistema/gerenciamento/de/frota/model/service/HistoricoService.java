@@ -5,6 +5,7 @@ import com.diego.Sistema.gerenciamento.de.frota.model.repository.HistoricoReposi
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,11 @@ public class HistoricoService {
     @Transactional
      public Optional<HistoricoModel> findByCodigoEmprestimo(String codigoEmprestimo){
         return historicoRepository.findByCodigoEmprestimo(codigoEmprestimo);
+    }
+
+    @Transactional
+    public List<HistoricoModel> findAll(){
+        return historicoRepository.findAll();
     }
 
 

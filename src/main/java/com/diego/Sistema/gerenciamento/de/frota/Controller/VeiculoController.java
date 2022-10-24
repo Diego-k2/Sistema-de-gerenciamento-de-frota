@@ -74,6 +74,7 @@ public class VeiculoController {
     @GetMapping("/delete/{id}")
     public String deleteVeiculo(@PathVariable("id") String id){
         VeiculoModel veiculoModel = veiculoService.findVeiculoById(id).get();
+        veiculoModel.setPlaca(null);
         veiculoModel.setIsAtivo(0);
         veiculoService.save(veiculoModel);
         return "redirect:/veiculo/todos";
@@ -155,6 +156,8 @@ public class VeiculoController {
             historicoModel.setDtEmprestimo(new Date());
             historicoModel.setVeiculoModel(veiculoModel);
             historicoModel.setCodigoEmprestimo(codigoEmprestimo);
+            historicoModel.setMotoristaNome(veiculoModel.getMotoristaModel().getNome() + " "
+                    + veiculoModel.getMotoristaModel().getSobrenome());
             historicoService.save(historicoModel);
         } else if(!Boolean.parseBoolean(aprovado)){
             veiculoModel.setMotoristaModel(null);

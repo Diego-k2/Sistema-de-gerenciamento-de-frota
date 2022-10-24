@@ -16,10 +16,12 @@ public class HistoricoModel {
 
     private Date dtDevolucao;
 
-    @ManyToOne(cascade = CascadeType.REMOVE) //TODO ARRUMAR BUG NO EXCLUIR (ADICIONAR CAMPO ATIVO OU NAO)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private VeiculoModel veiculoModel;
 
     private String codigoEmprestimo;
+
+    private String motoristaNome;
 
     public VeiculoModel getVeiculoModel() {
         return veiculoModel;
@@ -59,5 +61,13 @@ public class HistoricoModel {
 
     public void setCodigoEmprestimo(String codigoEmprestimo) {
         this.codigoEmprestimo = codigoEmprestimo;
+    }
+
+    public String getMotoristaNome() {
+        return motoristaNome;
+    }
+
+    public void setMotoristaNome(String motoristaNome) {
+        this.motoristaNome = motoristaNome;
     }
 }

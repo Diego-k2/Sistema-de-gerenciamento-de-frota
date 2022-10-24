@@ -1,6 +1,7 @@
 package com.diego.Sistema.gerenciamento.de.frota.Controller;
 
 import com.diego.Sistema.gerenciamento.de.frota.model.dtos.VeiculoDto;
+import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.HistoricoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.VeiculoModel;
 import com.diego.Sistema.gerenciamento.de.frota.model.enums.StatusVeiculoEnum;
@@ -8,12 +9,11 @@ import com.diego.Sistema.gerenciamento.de.frota.model.service.HistoricoService;
 import com.diego.Sistema.gerenciamento.de.frota.model.service.VeiculoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/historico")
@@ -24,6 +24,14 @@ public class HistoricoController {
     public HistoricoController(HistoricoService historicoService, VeiculoService veiculoService) {
         this.historicoService = historicoService;
         this.veiculoService = veiculoService;
+    }
+
+    @GetMapping("/todos")
+    public String todosEmprestimos(Model model){
+
+        model.addAttribute("historico", historicoService.findAll());
+
+        return "emprestimos/historico";
     }
 
 

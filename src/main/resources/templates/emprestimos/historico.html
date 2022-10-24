@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{fragmentos :: head}">
+</head>
+<body>
+    
+    <div th:replace="~{fragmentos :: header}"></div>
+
+    <div class="container">
+        <div class="card-header">
+            <h1>Histórico de Emprestimos</h1>
+        </div>
+        <table class="table">
+            <thead>
+                <th scope="col">Motorista</th>
+                <th scope="col">Veiculo</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Data do Emprestimo</th>
+                <th scope="col">Hora de Emprestimo</th>
+                <th scope="col">Data da Devolução</th>
+                <th scope="col">Hora da Devolução</th>
+            </thead>
+            <tbody th:each="historico : ${historico}">
+                <th scope="rol"><span th:text="${historico.motoristaNome}">Nome aqui</span></th>
+                <td><span th:text="${historico.veiculoModel.modelo}">Nome aqui</span></td>
+                <td><span th:text="${historico.veiculoModel.placa}">Nome aqui</span></td>
+                <td><span th:text="${#dates.format(historico.dtEmprestimo, 'dd/MM/yyyy')}">Não achamos</span></td>
+                <td><span th:text="${#dates.format(historico.dtEmprestimo, 'HH:mm')}">Não achamos</span></td>
+                <td><span th:text="${#dates.format(historico.dtDevolucao, 'dd/MM/yyyy')}">Não achamos</span></td>
+                <td><span th:text="${#dates.format(historico.dtDevolucao, 'HH:mm')}">Não achamos</span></td>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</body>
+</html>

@@ -19,7 +19,7 @@ public class VeiculoModel {
     @Column(nullable = false, length = 4)
     private String ano;
 
-    @Column(nullable = false, unique = true, length = 7)
+    @Column(nullable = false,unique = true, length = 7)
     private String placa;
 
     @Column(nullable = false)
