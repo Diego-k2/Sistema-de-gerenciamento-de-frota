@@ -28,3 +28,11 @@ a:hover{
 .margin-custo {
     margin: 0 40px;
 }
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+

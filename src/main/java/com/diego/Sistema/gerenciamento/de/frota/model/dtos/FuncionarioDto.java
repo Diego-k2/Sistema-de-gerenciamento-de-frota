@@ -1,6 +1,8 @@
 package com.diego.Sistema.gerenciamento.de.frota.model.dtos;
 
+import com.diego.Sistema.gerenciamento.de.frota.config.WebSecurityConfig;
 import com.diego.Sistema.gerenciamento.de.frota.model.entity.FuncionarioModel;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
 
@@ -85,13 +87,14 @@ public class FuncionarioDto {
 
     public FuncionarioModel toFuncionarioModel(){
         FuncionarioModel funcionarioModel = new FuncionarioModel();
+        WebSecurityConfig webSecurityConfig = new WebSecurityConfig();
 
         funcionarioModel.setNome(this.nome);
         funcionarioModel.setSobrenome(this.sobrenome);
         funcionarioModel.setCpf(this.cpf.replace("[^0-9a-zA-Z]+", ""));
         funcionarioModel.setCnh(this.cnh.replace("[^0-9a-zA-Z]+",""));
         funcionarioModel.setEmail(this.email);
-        funcionarioModel.setSenha(this.senha);
+        funcionarioModel.setSenha(webSecurityConfig.passwordEncoder().encode(this.senha));
         funcionarioModel.setPis(this.pis);
 
         return funcionarioModel;
